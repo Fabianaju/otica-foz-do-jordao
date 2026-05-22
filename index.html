@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
 <style>
   :root{
     --black:#0a0a0a;
@@ -290,7 +290,7 @@
         <div class="action-title">WhatsApp</div>
         <div class="action-sub">Atendimento direto</div>
       </a>
-      <a href="https://www.google.com/maps/place/%C3%B3tica+Precis%C3%A3o/data=!4m2!3m1!1s0x0:0x9ed391bed35b5338?sa=X&ved=1t:2428&ictx=111" class="action-card reveal">
+      <a href="https://www.google.com/maps/place/Oticas+Precis%C3%A3o/@-25.8340688,-52.0308273,17z/data=!3m1!4b1!4m6!3m5!1s0x94ef81e6e0c7c575:0x9c67d3be2445e97b!8m2!3d-25.8340737!4d-52.0282524!16s%2Fg%2F11xysy1k4b?entry=ttu" class="action-card reveal">
         <div class="action-icon">📍</div>
         <div class="action-title">Como Chegar</div>
         <div class="action-sub">Ver no mapa</div>
@@ -310,7 +310,7 @@
         <div class="action-title">Promoções</div>
         <div class="action-sub">Ofertas exclusivas</div>
       </a>
-      <a href="https://www.google.com/maps/place/%C3%B3tica+Precis%C3%A3o/data=!4m2!3m1!1s0x0:0x9ed391bed35b5338?sa=X&ved=1t:2428&ictx=111" class="action-card reveal">
+      <a href="https://www.google.com/maps/place/Oticas+Precis%C3%A3o/@-25.8340688,-52.0308273,17z/data=!3m1!4b1!4m6!3m5!1s0x94ef81e6e0c7c575:0x9c67d3be2445e97b!8m2!3d-25.8340737!4d-52.0282524!16s%2Fg%2F11xysy1k4b?entry=ttu" class="action-card reveal">
         <div class="action-icon">⭐</div>
         <div class="action-title">Avaliações</div>
         <div class="action-sub">Veja o que dizem</div>
@@ -389,7 +389,7 @@
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.123!2d-52.02!3d-25.834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9ed391bed35b5338!2s%C3%93tica+Precis%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1"></iframe>
     </div>
     <div style="text-align:center;margin-top:22px">
-      <a href="https://www.google.com/maps/place/%C3%B3tica+Precis%C3%A3o/data=!4m2!3m1!1s0x0:0x9ed391bed35b5338?sa=X&ved=1t:2428&ictx=111" class="btn btn-primary">📍 Abrir no Google Maps</a>
+      <a href="https://google.com/maps/place/ótica+Precisão/data=!4m2!3m1!1s0x0:0x9ed391bed35b5338?sa=X&ved=1t:2428&ictx=111" class="btn btn-primary">📍 Abrir no Google Maps</a>
     </div>
   </div>
 </section>
@@ -403,7 +403,9 @@
       <p class="section-desc">Escaneie ou baixe o QR Code para acessar nossa página.</p>
     </div>
     <div class="qr-card reveal">
-      <div id="qrcode"></div>
+      <div id="qrcode">
+        <svg id="qr-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
       <div class="qr-actions">
         <button class="btn btn-primary" onclick="baixarQR()">⬇ Baixar</button>
         <button class="btn btn-ghost" onclick="compartilharQR()">↗ Compartilhar</button>
@@ -468,87 +470,101 @@
     window.open(`https://wa.me/554298731112?text=${msg}`,'_blank');
   }
 
-  // QR Code
+  // ─── QR Code gerado puramente em JavaScript / SVG ───────────────────────────
   const SITE_URL = 'https://fabianaju.github.io/otica-foz-do-jordao/';
-  let qrReady = false;
-  const qrEl = document.getElementById('qrcode');
 
-  const qr = new QRCode(qrEl, {
-    text: SITE_URL, width: 220, height: 220,
-    colorDark: '#0a0a0a', colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.H
-  });
-
-  function waitQR(cb) {
-    const check = () => {
-      const c = qrEl.querySelector('canvas');
-      const i = qrEl.querySelector('img');
-      if (c || (i && i.complete && i.naturalWidth > 0)) { cb(); }
-      else { setTimeout(check, 100); }
+  (function buildQR(){
+    const s = document.createElement('script');
+    s.src = 'https://unpkg.com/qrcode-generator@1.4.4/qrcode.js';
+    s.onload = function(){
+      try {
+        const qr = qrcode(0, 'H');
+        qr.addData(SITE_URL);
+        qr.make();
+        const size = 220;
+        const mod = qr.getModuleCount();
+        const cell = Math.floor(size / (mod + 8));
+        const pad = Math.floor((size - cell * mod) / 2);
+        const svg = document.getElementById('qr-svg');
+        svg.setAttribute('width', size);
+        svg.setAttribute('height', size);
+        svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+        const bg = document.createElementNS('http://www.w3.org/2000/svg','rect');
+        bg.setAttribute('width', size); bg.setAttribute('height', size); bg.setAttribute('fill','#fff');
+        svg.appendChild(bg);
+        for(let r=0;r<mod;r++){
+          for(let c=0;c<mod;c++){
+            if(qr.isDark(r,c)){
+              const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+              rect.setAttribute('x', pad + c*cell);
+              rect.setAttribute('y', pad + r*cell);
+              rect.setAttribute('width', cell);
+              rect.setAttribute('height', cell);
+              rect.setAttribute('fill','#0a0a0a');
+              svg.appendChild(rect);
+            }
+          }
+        }
+      } catch(err){ console.error('QR error:', err); }
     };
-    check();
-  }
-  waitQR(() => { qrReady = true; });
+    s.onerror = function(){
+      const el = document.getElementById('qrcode');
+      el.innerHTML = `<a href="${SITE_URL}" style="color:#d4af37;font-size:.85rem;word-break:break-all">${SITE_URL}</a>`;
+    };
+    document.head.appendChild(s);
+  })();
 
-  function getQRDataURL() {
-    const c = qrEl.querySelector('canvas');
-    if (c) return c.toDataURL('image/png');
-    const i = qrEl.querySelector('img');
-    if (i && i.src) return i.src;
-    return null;
-  }
-
-  function dataURLtoBlob(dataURL) {
-    const [header, data] = dataURL.split(',');
-    const mime = header.match(/:(.*?);/)[1];
-    const binary = atob(data);
-    const arr = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
-    return new Blob([arr], { type: mime });
+  function getSVGDataURL(){
+    const svg = document.getElementById('qr-svg');
+    const serialized = new XMLSerializer().serializeToString(svg);
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serialized);
   }
 
-  function baixarQR() {
-    if (!qrReady) { alert('Aguarde o QR Code carregar.'); return; }
-    const dataURL = getQRDataURL();
-    if (!dataURL) { alert('Nao foi possivel gerar o QR Code.'); return; }
-    const a = document.createElement('a');
-    a.href = dataURL;
-    a.download = 'qrcode-oticas-precisao-reserva-do-iguacu.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  function svgToPNGDataURL(cb){
+    const svg = document.getElementById('qr-svg');
+    const w = 440, h = 440;
+    const serialized = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([serialized], {type:'image/svg+xml;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = function(){
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,w,h);
+      ctx.drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      cb(c.toDataURL('image/png'));
+    };
+    img.onerror = function(){ URL.revokeObjectURL(url); cb(null); };
+    img.src = url;
   }
 
-  async function compartilharQR() {
-    if (!qrReady) { alert('Aguarde o QR Code carregar.'); return; }
-    const dataURL = getQRDataURL();
-    if (!dataURL) { alert('Nao foi possivel gerar o QR Code.'); return; }
-    const blob = dataURLtoBlob(dataURL);
-    const file = new File([blob], 'qrcode-oticas-precisao-reserva-do-iguacu.png', { type: 'image/png' });
+  function baixarQR(){
+    svgToPNGDataURL(function(dataURL){
+      if(!dataURL){ alert('Não foi possível gerar o PNG. Tente novamente.'); return; }
+      const a = document.createElement('a');
+      a.href = dataURL;
+      a.download = 'qrcode-oticas-precisao-foz-do-jordao.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  }
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      try {
-        await navigator.share({ files: [file], title: 'Oticas Precisao Foz do Jordão', text: 'Acesse: ' + SITE_URL });
+  async function compartilharQR(){
+    if(navigator.share){
+      try{
+        await navigator.share({ title:'Óticas Precisão Foz do Jordão', text:'Acesse nossa página:', url: SITE_URL });
         return;
-      } catch (err) {
-        if (err.name === 'AbortError') return;
-      }
+      } catch(err){ if(err.name==='AbortError') return; }
     }
-
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: 'Oticas Precisao Foz do Jordão', text: 'Acesse nossa pagina:', url: SITE_URL });
-        return;
-      } catch (err) {
-        if (err.name === 'AbortError') return;
-      }
-    }
-
-    try {
+    try{
       await navigator.clipboard.writeText(SITE_URL);
-      alert('Link copiado para a area de transferencia!\n' + SITE_URL);
+      alert('Link copiado!\n' + SITE_URL);
     } catch {
-      prompt('Copie o link abaixo:', SITE_URL);
+      prompt('Copie o link:', SITE_URL);
     }
   }
 </script>
