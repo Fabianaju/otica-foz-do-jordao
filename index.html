@@ -10,9 +10,11 @@
 <meta property="og:title" content="Óticas Precisão Foz do Jordão" />
 <meta property="og:description" content="Enxergue o mundo com mais estilo e precisão." />
 <meta property="og:type" content="website" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -27,6 +29,7 @@
     --line:rgba(212,175,55,.22);
     --radius:18px;
     --shadow-gold:0 10px 40px -10px rgba(212,175,55,.45);
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -52,6 +55,7 @@
                      linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
     background-size:40px 40px;
     mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 75%);
   }
   .container{max-width:1100px;margin:0 auto;padding:0 22px}
   .serif{font-family:'Cormorant Garamond',serif;letter-spacing:.5px}
@@ -66,14 +70,14 @@
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     background:rgba(10,10,10,.55);
     border-bottom:1px solid rgba(212,175,55,.12);
-    transition:.3s;
+    transition:var(--transition);
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;max-width:1100px;margin:0 auto}
-  .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600}
+  .nav-logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;text-decoration:none;color:var(--white);}
   .nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
   .nav-logo-img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:1px solid var(--gold);box-shadow:0 0 12px rgba(212,175,55,.4)}
-  .nav-cta{font-size:.85rem;padding:9px 18px;border-radius:999px;border:1px solid var(--line);color:var(--gold-2);text-decoration:none;transition:.3s}
-  .nav-cta:hover{background:var(--gold);color:#000;box-shadow:var(--shadow-gold)}
+  .nav-cta{font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:10px 20px;border-radius:999px;border:1px solid var(--gold);color:var(--gold-2);text-decoration:none;background:rgba(212,175,55,.05);transition:var(--transition);}
+  .nav-cta:hover{background:var(--gold);color:#060606;box-shadow:var(--shadow-gold);transform:translateY(-1px);}
 
   /* HERO */
   header.hero{
@@ -100,25 +104,25 @@
   @keyframes pulseRing{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.25);opacity:0}}
 
   h1.brand{font-size:clamp(2.2rem,7vw,3.6rem);font-weight:700;line-height:1.05;margin-bottom:14px}
-  .tagline{font-size:clamp(1.05rem,3vw,1.3rem);color:var(--muted);max-width:600px;margin:0 auto 12px;font-style:italic;font-family:'Cormorant Garamond',serif}
+  .tagline{font-size:clamp(1.05rem,3vw,1.3rem);color:var(--gold-2);max-width:600px;margin:0 auto 12px;font-style:italic;font-family:'Cormorant Garamond',serif;font-weight:500;}
   .hero-sub{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto 36px}
   .hero-buttons{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:8px}
 
   /* Buttons */
   .btn{
     display:inline-flex;align-items:center;gap:8px;
-    padding:14px 26px;border-radius:999px;font-weight:500;font-size:.95rem;
-    text-decoration:none;transition:.35s;cursor:pointer;border:none;
-    font-family:inherit;
+    padding:14px 26px;border-radius:999px;font-weight:600;font-size:.95rem;
+    text-decoration:none;transition:var(--transition);cursor:pointer;border:none;
+    font-family:inherit;letter-spacing:.02em;
   }
   .btn-primary{
     background:linear-gradient(135deg,#f5d97a,#d4af37 50%,#a8801f);
-    color:#0a0a0a;font-weight:600;
+    color:#0a0a0a;
     box-shadow:0 8px 24px -8px rgba(212,175,55,.6),inset 0 1px 0 rgba(255,255,255,.4);
   }
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px -8px rgba(212,175,55,.8),inset 0 1px 0 rgba(255,255,255,.5)}
   .btn-ghost{background:rgba(255,255,255,.03);color:var(--white);border:1px solid var(--line);backdrop-filter:blur(8px)}
-  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-2);box-shadow:0 0 20px rgba(212,175,55,.2)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold-2);box-shadow:0 0 20px rgba(212,175,55,.2);transform:translateY(-2px);}
 
   /* Sections */
   section{padding:90px 0;position:relative}
@@ -134,14 +138,14 @@
     background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
     border:1px solid rgba(255,255,255,.06);
     text-decoration:none;color:var(--white);text-align:center;
-    transition:.4s;overflow:hidden;
+    transition:var(--transition);overflow:hidden;
     display:flex;flex-direction:column;align-items:center;gap:10px;
   }
   .action-card::before{
     content:"";position:absolute;inset:0;border-radius:var(--radius);padding:1px;
     background:linear-gradient(135deg,transparent 40%,var(--gold) 50%,transparent 60%);
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;transition:.4s;
+    -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;transition:var(--transition);
   }
   .action-card:hover{transform:translateY(-4px);background:linear-gradient(160deg,rgba(212,175,55,.08),rgba(255,255,255,.02))}
   .action-card:hover::before{opacity:1}
@@ -150,8 +154,10 @@
     display:flex;align-items:center;justify-content:center;font-size:1.4rem;
     background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(212,175,55,.04));
     border:1px solid rgba(212,175,55,.25);
+    transition:var(--transition);
   }
-  .action-title{font-size:.92rem;font-weight:500;color:var(--white)}
+  .action-card:hover .action-icon{transform:scale(1.08);border-color:var(--gold);box-shadow:0 0 15px rgba(212,175,55,.2);}
+  .action-title{font-size:.92rem;font-weight:600;color:var(--white)}
   .action-sub{font-size:.72rem;color:var(--muted)}
 
   /* Form */
@@ -169,11 +175,12 @@
     background:rgba(0,0,0,.4);
     border:1px solid rgba(255,255,255,.08);
     color:var(--white);font-size:.95rem;font-family:inherit;
-    transition:.3s;
+    transition:var(--transition);
   }
   .field input:focus,.field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.15)}
-  .field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PSc4JyB2aWV3Qm94PScwIDAgMTIgOCc+PHBhdGggZmlsbD0nI2Q0YWYzNycgZD0nTTYgOEwwIDBoMTJ6Jy8+PC9zdmc+");background-repeat:no-repeat;background-position:right 16px center}
-  .form-card .btn{width:100%;justify-content:center;margin-top:6px}
+  .field input::placeholder{color:rgba(255,255,255,.25)}
+  .field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMicgaGVpZ2h0PSc4JyB2aWV3Qm94PScwIDAgMTIgOCc+PHBhdGggZmlsbD0nI2Q0YWYzNycgZD0nTTYgOEwwIDBoMTJ6Jy8+PC9zdmc+");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer;}
+  .form-card .btn{width:100%;justify-content:center;margin-top:6px;padding:16px;}
 
   /* Promo cards */
   .promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
@@ -181,7 +188,7 @@
     position:relative;padding:30px 24px;border-radius:20px;
     background:linear-gradient(180deg,#141414,#0c0c0c);
     border:1px solid rgba(255,255,255,.06);
-    overflow:hidden;transition:.4s;
+    overflow:hidden;transition:var(--transition);
   }
   .promo-card::after{
     content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
@@ -190,9 +197,9 @@
   }
   .promo-card:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.4);box-shadow:0 30px 60px -20px rgba(0,0,0,.7),0 0 0 1px rgba(212,175,55,.15)}
   .promo-card:hover::after{left:120%}
-  .promo-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold);margin-bottom:10px;line-height:1}
+  .promo-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold);margin-bottom:10px;line-height:1;font-weight:600;opacity:.8;}
   .promo-title{font-size:1.05rem;font-weight:600;margin-bottom:8px}
-  .promo-desc{color:var(--muted);font-size:.88rem}
+  .promo-desc{color:var(--muted);font-size:.88rem;line-height:1.5;}
 
   /* Map */
   .map-wrap{
@@ -200,31 +207,199 @@
     box-shadow:0 30px 80px -30px rgba(0,0,0,.8);
     position:relative;aspect-ratio:16/9;
   }
-  .map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(.4) contrast(1.1) brightness(.9)}
+  .map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(.4) contrast(1.1) brightness(.9);transition:var(--transition);}
+  .map-wrap:hover iframe{filter:grayscale(.2) contrast(1.05) brightness(.95);}
+  .map-btn-container{text-align:center;margin-top:22px}
 
-  /* QR */
-  .qr-card{
-    max-width:340px;margin:0 auto;padding:30px;border-radius:24px;text-align:center;
-    background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
-    border:1px solid var(--line);backdrop-filter:blur(10px);
+  /* ─── FOOTER ELEGANTE (mesmo estilo do index.html) ─── */
+  footer.elegant-footer {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 80px 0 30px;
+    border-top: 1px solid var(--line);
+    position: relative;
   }
-  #qrcode{display:inline-block;padding:14px;background:#fff;border-radius:14px;margin-bottom:14px;box-shadow:0 0 30px rgba(212,175,55,.3)}
-  #qrcode img,#qrcode canvas,#qr-svg{display:block}
-  #qr-svg{width:220px;height:220px}
-  .qr-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .qr-actions .btn{padding:10px 18px;font-size:.85rem}
 
-  /* Footer */
-  footer{padding:60px 0 30px;border-top:1px solid rgba(212,175,55,.12);margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.5))}
-  .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-bottom:40px}
-  .footer-col h4{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold);margin-bottom:14px}
-  .footer-col p,.footer-col a{color:var(--muted);font-size:.88rem;text-decoration:none;display:block;margin-bottom:6px;transition:.3s}
-  .footer-col a:hover{color:var(--gold-2)}
-  .footer-bottom{text-align:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);color:var(--muted);font-size:.8rem}
-  .footer-bottom .gold-text{font-weight:500}
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr 1fr 0.9fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+
+  .footer-logo-img {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  }
+
+  .footer-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-col h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 35px;
+    height: 1px;
+    background-color: var(--gold);
+  }
+
+  .footer-col p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .footer-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links-list li a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+  }
+
+  .footer-links-list li a i {
+    font-size: 0.95rem;
+    color: var(--gold);
+    width: 16px;
+    text-align: center;
+    transition: var(--transition);
+  }
+
+  .footer-links-list li a:hover {
+    color: var(--gold-2);
+    transform: translateX(4px);
+  }
+
+  .footer-links-list li a:hover i {
+    transform: scale(1.1);
+    color: var(--gold-2);
+  }
+
+  .footer-social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .footer-social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .footer-social-icons a:hover {
+    background: linear-gradient(135deg, #f5d97a, #d4af37);
+    color: #060606;
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    transform: translateY(-3px);
+  }
+
+  .footer-qr-container {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-qr-box {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 14px;
+    border: 1px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+    display: inline-block;
+    transition: var(--transition);
+  }
+
+  .footer-qr-box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+  }
+
+  .footer-qr-box svg {
+    display: block;
+    width: 120px;
+    height: 120px;
+  }
+
+  .footer-qr-text {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.4;
+    max-width: 140px;
+  }
+
+  .footer-qr-btn {
+    margin-top: 8px;
+    padding: 8px 18px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
 
   /* Reveal animation */
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(0.16,1,0.3,1),transform .8s cubic-bezier(0.16,1,0.3,1);will-change:transform,opacity;}
   .reveal.in{opacity:1;transform:translateY(0)}
 
   /* Floating WhatsApp */
@@ -235,38 +410,40 @@
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 10px 30px rgba(37,211,102,.5);
     color:#fff;text-decoration:none;
-    animation:floatY 3s ease-in-out infinite;
+    transition:var(--transition);
   }
+  .float-wa:hover{transform:scale(1.1) translateY(-3px);box-shadow:0 15px 35px rgba(37,211,102,.6);}
   .float-wa svg{width:28px;height:28px}
 
   /* Modal Consulta */
   .modal-overlay{
     display:none;position:fixed;inset:0;z-index:200;
-    background:rgba(0,0,0,.75);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    background:rgba(0,0,0,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
     align-items:center;justify-content:center;padding:20px;
+    opacity:0;transition:opacity .3s ease;
   }
-  .modal-overlay.open{display:flex;animation:fadeInOverlay .25s ease}
-  @keyframes fadeInOverlay{from{opacity:0}to{opacity:1}}
+  .modal-overlay.open{display:flex;opacity:1;}
   .modal-box{
-    position:relative;max-width:420px;width:100%;border-radius:28px;
-    background:linear-gradient(160deg,#1a1a1a,#0e0e0e);
+    position:relative;max-width:460px;width:100%;border-radius:28px;
+    background:linear-gradient(160deg,#141414,#0a0a0a);
     border:1px solid rgba(212,175,55,.3);
-    padding:32px 28px 28px;
-    box-shadow:0 40px 100px -20px rgba(0,0,0,.9),0 0 0 1px rgba(212,175,55,.1),0 0 60px -20px rgba(212,175,55,.25);
-    animation:slideUpModal .3s cubic-bezier(.34,1.56,.64,1);
+    padding:36px 32px;
+    box-shadow:0 40px 100px -20px rgba(0,0,0,.9),0 0 60px -20px rgba(212,175,55,.25);
+    transform:translateY(30px);opacity:0;
+    transition:all .4s cubic-bezier(0.16,1,0.3,1);
   }
-  @keyframes slideUpModal{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .modal-overlay.open .modal-box{transform:translateY(0);opacity:1;}
   .modal-close{
-    position:absolute;top:16px;right:18px;background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:1.3rem;
-    width:34px;height:34px;border-radius:50%;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;transition:.2s;line-height:1;
+    position:absolute;top:20px;right:20px;background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:1.4rem;
+    width:36px;height:36px;border-radius:50%;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:var(--transition);line-height:1;
   }
-  .modal-close:hover{background:rgba(255,255,255,.12);color:var(--white)}
+  .modal-close:hover{background:rgba(255,255,255,.15);color:var(--white);transform:rotate(90deg);}
   .modal-badge{
     display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
     color:var(--gold);background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);
-    padding:5px 14px;border-radius:999px;margin-bottom:20px;
+    padding:6px 16px;border-radius:999px;margin-bottom:24px;
   }
   .modal-header-info{display:flex;align-items:center;gap:16px;margin-bottom:20px}
   .modal-avatar{
@@ -285,26 +462,26 @@
   .modal-value{font-size:.95rem;color:var(--white);font-weight:500}
   .modal-value-sub{font-size:.82rem;color:var(--muted);margin-top:2px}
   .modal-cta{width:100%;justify-content:center;font-size:1rem}
-  @media(max-width:480px){
-    .modal-box{padding:26px 20px 22px}
-    .modal-nome{font-size:1.25rem}
-  }
 
+  @media(max-width:900px){
+    .footer-grid{grid-template-columns:repeat(3, 1fr);}
+  }
   @media (max-width:640px){
     section{padding:70px 0}
     .hero-logo{width:120px;height:120px}
-    .hero-logo svg{width:70px;height:70px}
     .form-card{padding:28px 20px}
     .btn{padding:16px 22px;font-size:1rem;min-height:48px}
     .nav-cta{padding:11px 18px;min-height:44px}
     .action-card{padding:22px 14px}
-    .qr-card{padding:24px 18px}
-    #qr-svg{width:200px;height:200px}
-    .qr-actions{flex-direction:column;gap:10px}
-    .qr-actions .btn{width:100%;justify-content:center;padding:15px}
     .actions-grid{grid-template-columns:repeat(2,1fr)}
     .footer-grid{grid-template-columns:1fr 1fr}
+    .footer-qr-container{grid-column:1/-1;}
     .float-wa{bottom:18px;right:18px;width:54px;height:54px}
+  }
+  @media (max-width:480px){
+    .modal-box{padding:26px 20px 22px}
+    .modal-nome{font-size:1.25rem}
+    .footer-grid{grid-template-columns:1fr}
   }
   @media (max-width:380px){
     .actions-grid{grid-template-columns:1fr}
@@ -315,7 +492,7 @@
 
 <nav>
   <div class="nav-inner">
-        <div class="nav-logo">
+    <div class="nav-logo">
       <img src="https://fabianaju.github.io/otica-reserva-do-iguacu/logo.jpeg" alt="Logo" class="nav-logo-img"/>
       <span>Precisão <span class="gold-text">Foz do Jordão</span></span>
     </div>
@@ -326,8 +503,8 @@
 <!-- HERO -->
 <header class="hero">
   <div class="container">
-        <div class="hero-logo">
-      <img src="https://fabianaju.github.io/otica-reserva-do-iguacu/logo.jpeg" alt="Óticas Precisão Cantagalo" class="hero-logo-img"/>
+    <div class="hero-logo">
+      <img src="https://fabianaju.github.io/otica-reserva-do-iguacu/logo.jpeg" alt="Óticas Precisão Foz do Jordão" class="hero-logo-img"/>
     </div>
     <div class="section-eyebrow">Óticas Precisão Foz do Jordão</div>
     <h1 class="brand serif">Enxergue o mundo<br/>com mais <span class="gold-text">estilo e precisão</span>.</h1>
@@ -453,69 +630,68 @@
       <iframe loading="lazy" allowfullscreen
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.123!2d-52.02!3d-25.834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9ed391bed35b5338!2s%C3%93tica+Precis%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1"></iframe>
     </div>
-    <div style="text-align:center;margin-top:22px">
+    <div class="map-btn-container">
       <a href="https://google.com/maps/place/ótica+Precisão/data=!4m2!3m1!1s0x0:0x9ed391bed35b5338?sa=X&ved=1t:2428&ictx=111" class="btn btn-primary">📍 Abrir no Google Maps</a>
     </div>
   </div>
 </section>
 
-<!-- QR -->
-<section id="qr">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-eyebrow">Compartilhe</div>
-      <h2 class="section-title">QR Code <span class="gold-text">exclusivo</span></h2>
-      <p class="section-desc">Escaneie ou baixe o QR Code para acessar nossa página.</p>
-    </div>
-    <div class="qr-card reveal">
-      <div id="qrcode">
-        <svg id="qr-svg" xmlns="http://www.w3.org/2000/svg"></svg>
-      </div>
-      <div class="qr-actions">
-        <button class="btn btn-primary" onclick="baixarQR()">⬇ Baixar</button>
-        <button class="btn btn-ghost" onclick="compartilharQR()">↗ Compartilhar</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
+<!-- FOOTER ELEGANTE -->
+<footer class="elegant-footer">
   <div class="container">
     <div class="footer-grid">
+
       <div class="footer-col">
-        <h4>Óticas Precisão Foz do Jordão</h4>
-        <p>Cuidando dos seus olhos com estilo, qualidade e precisão.</p>
+        <div class="footer-logo-wrap">
+          <img src="https://fabianaju.github.io/otica-reserva-do-iguacu/logo.jpeg" alt="Logo" class="footer-logo-img"/>
+          <span class="footer-logo-text">Precisão <span class="gold-text">Foz do Jordão</span></span>
+        </div>
+        <p>Cuidando dos seus olhos com estilo, qualidade e precisão desde o primeiro olhar.</p>
+        <div class="footer-social-icons">
+          <a href="https://www.instagram.com/otica_precisaofozdojordao/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/554298731112" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.google.com/maps/place/Oticas+Precis%C3%A3o/@-25.8340688,-52.0308273,17z" target="_blank" rel="noopener" aria-label="Google Maps"><i class="fa-solid fa-location-dot"></i></a>
+        </div>
       </div>
+
       <div class="footer-col">
         <h4>Contato</h4>
-        <a href="https://wa.me/554298731112">WhatsApp: (46) 9931-3254</a>
-        <a href="tel:+554298731112">Telefone: (42) 9873-1112</a>
-        <a href="https://www.instagram.com/otica_precisaofozdojordao/">Instagram</a>
+        <ul class="footer-links-list">
+          <li><a href="https://wa.me/554298731112"><i class="fa-brands fa-whatsapp"></i> (46) 9931-3254</a></li>
+          <li><a href="tel:+554298731112"><i class="fa-solid fa-phone"></i> (42) 9873-1112</a></li>
+          <li><a href="https://www.instagram.com/otica_precisaofozdojordao/" target="_blank" rel="noopener"><i class="fa-solid fa-hashtag"></i> @otica_precisaofozdojordao</a></li>
+        </ul>
       </div>
+
       <div class="footer-col">
         <h4>Endereço</h4>
-        <a href="https://www.google.com/maps/place/Av.+Morro+Verde,+1859,+Foz+do+Jord%C3%A3o+-+PR,+85145-000/@-25.7390022,-52.1216372,17z/data=!3m1!4b1!4m6!3m5!1s0x94ef9b68d2d2fbff:0xc8b61a89c5e404e6!8m2!3d-25.7390071!4d-52.1190623!16s%2Fg%2F11tdl78_9b?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D">Av. Morro Verde, 1859 - Centro, Foz do Jordão - PR, 85145-000</a>
-        <p></p>
+        <ul class="footer-links-list">
+          <li><a href="https://www.google.com/maps/place/Av.+Morro+Verde,+1859,+Foz+do+Jord%C3%A3o+-+PR" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Av. Morro Verde, 1859 — Centro, Foz do Jordão - PR</a></li>
+        </ul>
+        <p style="margin-top: 4px; font-size: 0.85rem;"><i class="fa-regular fa-clock" style="color: var(--gold); margin-right: 6px;"></i> Horários:<br>Seg a Sex: 08:00 às 18:00<br>Sábado: 08:30 às 12:00</p>
       </div>
-      <div class="footer-col">
-        <h4>Horário</h4>
-        <p>Seg a Sex: 08:00 – 18:00</p>
-        <p>Sábado: 08:30 – 12:00</p>
-      </div>
-      <div class="footer-col">
-        <h4>Horário</h4>
-        <p>Seg a Sex: 08:00 – 18:00</p>
-        <p>Sábado: 08:30 – 11:30</p>
-      </div>
+
       <div class="footer-col">
         <h4>Nossas Lojas</h4>
-        <a href="https://otica-cantagalo.vercel.app/" target="_blank" rel="noopener">📍 Cantagalo</a>
-        <a href="https://otica-campina-do-simao.vercel.app/" target="_blank" rel="noopener">📍 Campina do Simão</a>
-        <a href="https://oticaprecisaovirmond.vercel.app//" target="_blank" rel="noopener">📍 Virmond</a>
-        <a href="https://otica-reserva-do-iguacu.vercel.app/" target="_blank" rel="noopener">📍 Reserva do Iguaçu</a>
+        <ul class="footer-links-list">
+          <li><a href="https://otica-cantagalo.vercel.app/" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Cantagalo</a></li>
+          <li><a href="https://otica-campina-do-simao.vercel.app/" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Campina do Simão</a></li>
+          <li><a href="https://oticaprecisaovirmond.vercel.app/" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Virmond</a></li>
+          <li><a href="https://otica-reserva-do-iguacu.vercel.app/" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Reserva do Iguaçu</a></li>
+        </ul>
       </div>
+
+      <div class="footer-col footer-qr-container">
+        <h4>Cartão Digital</h4>
+        <div class="footer-qr-box">
+          <svg id="qr-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <p class="footer-qr-text">Aponte a câmera do celular para abrir nossa página.</p>
+        <button class="btn btn-primary footer-qr-btn" onclick="baixarQR()"><i class="fa-solid fa-download"></i> Baixar QR</button>
+      </div>
+
     </div>
+
     <div class="footer-bottom">
       © <span id="ano"></span> <span class="gold-text">Óticas Precisão Foz do Jordão</span> — Todos os direitos reservados.
     </div>
@@ -586,40 +762,39 @@
     const tel = f.telefone.value.trim();
     const cidade = f.cidade.value.trim();
     const interesse = f.interesse.value;
-    const msg = `Olá! Gostaria de solicitar atendimento na Óticas Precisão Foz do Jordão.%0A%0A*Nome:* ${nome}%0A*Telefone:* ${tel}%0A*Cidade:* ${cidade}%0A*Interesse:* ${interesse}`;
-    window.open(`https://wa.me/554298731112?text=${msg}`,'_blank');
+    const msg = `Olá! Gostaria de solicitar atendimento na Óticas Precisão Foz do Jordão.\n\n*Nome:* ${nome}\n*Telefone:* ${tel}\n*Cidade:* ${cidade}\n*Interesse:* ${interesse}`;
+    window.open(`https://wa.me/554298731112?text=${encodeURIComponent(msg)}`,'_blank');
   }
 
-  // ─── QR Code gerado puramente em JavaScript / SVG ───────────────────────────
-  const SITE_URL = 'https://fabianaju.github.io/otica-foz-do-jordao/';
+  // QR Code no footer
+  const SITE_URL = 'https://otica-foz-do-jordao.vercel.app/';
 
   (function buildQR(){
     const s = document.createElement('script');
     s.src = 'https://unpkg.com/qrcode-generator@1.4.4/qrcode.js';
     s.onload = function(){
       try {
-        const qr = qrcode(0, 'H');
+        const qr = qrcode(0, 'M');
         qr.addData(SITE_URL);
         qr.make();
-        const size = 220;
+        const size = 200;
         const mod = qr.getModuleCount();
-        const cell = Math.floor(size / (mod + 8));
-        const pad = Math.floor((size - cell * mod) / 2);
+        const cell = size / mod;
         const svg = document.getElementById('qr-svg');
         svg.setAttribute('width', size);
         svg.setAttribute('height', size);
         svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
         const bg = document.createElementNS('http://www.w3.org/2000/svg','rect');
-        bg.setAttribute('width', size); bg.setAttribute('height', size); bg.setAttribute('fill','#fff');
+        bg.setAttribute('width', size); bg.setAttribute('height', size); bg.setAttribute('fill','#ffffff');
         svg.appendChild(bg);
         for(let r=0;r<mod;r++){
           for(let c=0;c<mod;c++){
             if(qr.isDark(r,c)){
               const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
-              rect.setAttribute('x', pad + c*cell);
-              rect.setAttribute('y', pad + r*cell);
-              rect.setAttribute('width', cell);
-              rect.setAttribute('height', cell);
+              rect.setAttribute('x', c*cell);
+              rect.setAttribute('y', r*cell);
+              rect.setAttribute('width', cell+0.1);
+              rect.setAttribute('height', cell+0.1);
               rect.setAttribute('fill','#0a0a0a');
               svg.appendChild(rect);
             }
@@ -628,68 +803,49 @@
       } catch(err){ console.error('QR error:', err); }
     };
     s.onerror = function(){
-      const el = document.getElementById('qrcode');
-      el.innerHTML = `<a href="${SITE_URL}" style="color:#d4af37;font-size:.85rem;word-break:break-all">${SITE_URL}</a>`;
+      document.getElementById('qr-svg').innerHTML = `<text x="10" y="20" fill="#d4af37" font-size="12">${SITE_URL}</text>`;
     };
     document.head.appendChild(s);
   })();
 
-  function getSVGDataURL(){
-    const svg = document.getElementById('qr-svg');
-    const serialized = new XMLSerializer().serializeToString(svg);
-    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(serialized);
-  }
-
-  function svgToPNGDataURL(cb){
-    const svg = document.getElementById('qr-svg');
-    const w = 440, h = 440;
-    const serialized = new XMLSerializer().serializeToString(svg);
-    const blob = new Blob([serialized], {type:'image/svg+xml;charset=utf-8'});
-    const url = URL.createObjectURL(blob);
-    const img = new Image();
-    img.onload = function(){
-      const c = document.createElement('canvas');
-      c.width = w; c.height = h;
-      const ctx = c.getContext('2d');
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(0,0,w,h);
-      ctx.drawImage(img, 0, 0, w, h);
-      URL.revokeObjectURL(url);
-      cb(c.toDataURL('image/png'));
-    };
-    img.onerror = function(){ URL.revokeObjectURL(url); cb(null); };
-    img.src = url;
-  }
-
   function baixarQR(){
-    svgToPNGDataURL(function(dataURL){
-      if(!dataURL){ alert('Não foi possível gerar o PNG. Tente novamente.'); return; }
+    const svg = document.getElementById('qr-svg');
+    const svgString = new XMLSerializer().serializeToString(svg);
+    const svgBlob = new Blob([svgString], {type:'image/svg+xml;charset=utf-8'});
+    const blobURL = URL.createObjectURL(svgBlob);
+    const image = new Image();
+    image.onload = function(){
+      const canvas = document.createElement('canvas');
+      canvas.width = 400; canvas.height = 400;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,400,400);
+      ctx.drawImage(image, 0, 0, 400, 400);
+      const png = canvas.toDataURL('image/png');
       const a = document.createElement('a');
-      a.href = dataURL;
+      a.href = png;
       a.download = 'qrcode-oticas-precisao-foz-do-jordao.png';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-    });
+      URL.revokeObjectURL(blobURL);
+    };
+    image.src = blobURL;
   }
 
-  async function compartilharQR(){
-    if(navigator.share){
-      try{
-        await navigator.share({ title:'Óticas Precisão Foz do Jordão', text:'Acesse nossa página:', url: SITE_URL });
-        return;
-      } catch(err){ if(err.name==='AbortError') return; }
-    }
-    try{
-      await navigator.clipboard.writeText(SITE_URL);
-      alert('Link copiado!\n' + SITE_URL);
-    } catch {
-      prompt('Copie o link:', SITE_URL);
-    }
+  function abrirConsulta(e){
+    e.preventDefault();
+    const modal = document.getElementById('modal-consulta');
+    modal.style.display = 'flex';
+    setTimeout(()=>modal.classList.add('open'),10);
+    document.body.style.overflow='hidden';
   }
-
-  function abrirConsulta(e){ e.preventDefault(); document.getElementById('modal-consulta').classList.add('open'); document.body.style.overflow='hidden'; }
-  function fecharConsultaBtn(){ document.getElementById('modal-consulta').classList.remove('open'); document.body.style.overflow=''; }
+  function fecharConsultaBtn(){
+    const modal = document.getElementById('modal-consulta');
+    modal.classList.remove('open');
+    setTimeout(()=>{ modal.style.display='none'; },300);
+    document.body.style.overflow='';
+  }
   function fecharConsulta(e){ if(e.target===document.getElementById('modal-consulta')) fecharConsultaBtn(); }
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') fecharConsultaBtn(); });
 </script>
